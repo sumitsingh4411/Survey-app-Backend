@@ -16,7 +16,7 @@ const port = process.env.PORT || 8000;
 app.use('/api', routes);
 
 // mongoDB connection
-mongoose.connect("mongodb+srv://sumit:asdf@cluster0.vyqfx.mongodb.net/survey-app?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
