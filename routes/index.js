@@ -17,5 +17,7 @@ router.post('/survey', auth, Survey.addsurvey);
 router.put('/survey/:id', auth, Survey.updateSurvey);
 router.delete('/survey/:id', auth, Survey.deletesurvey);
 router.get('/survey', Survey.all);
-router.get('/survey/:id', Survey.getone);
+router.get('/survey/:id',auth, Survey.getone);
+router.post('/emailSend', auth, Survey.emailSend);
+router.post('/ChangePassword', auth, Survey.ChangePassword);
 export default router;

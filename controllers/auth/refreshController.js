@@ -24,7 +24,7 @@ const refreshController = {
             }
 
             try {
-                const { _id } = JwtToken.veryfy(data.token, process.env.refresshsec);
+                const { _id } = JwtToken.veryfy(data.token, "thisismysecret");
                 UserId = _id;
 
 
@@ -41,7 +41,7 @@ const refreshController = {
             const accesstoken = JwtToken.sign({ _id: User._id });
 
 
-            const refrestoken = JwtToken.sign({ _id: User._id }, '1y', process.env.refresshsec);
+            const refrestoken = JwtToken.sign({ _id: User._id }, '1y', "thisismysecret");
 
             await refreshToken.create({ token: refrestoken })
             res.json({ access_token: accesstoken, refresh_token: refrestoken });

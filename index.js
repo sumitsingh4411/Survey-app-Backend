@@ -3,18 +3,20 @@ import dotenv from 'dotenv';
 import routes from './routes';
 import errorHandler from './middleware/errorHandler';
 import mongoose from 'mongoose';
-
-
+import cors from 'cors';
 
 
 const app = express();
+
+app.use(cors())
 app.use(express.json());
 dotenv.config();
-const port = process.env.App_PORT || 8000;
+
+const port = process.env.PORT || 8000;
 app.use('/api', routes);
 
 // mongoDB connection
-mongoose.connect(process.env.DB_URL, {
+mongoose.connect("mongodb+srv://sumit:asdf@cluster0.vyqfx.mongodb.net/survey-app?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

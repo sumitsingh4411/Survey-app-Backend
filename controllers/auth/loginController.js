@@ -9,7 +9,7 @@ const loginController = {
     async login(req, res, next) {
         const registerSchema = Joi.object({
             email: Joi.string().email().required(),
-            password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+            password: Joi.string().min(5).required(),
         });
         const { error } = registerSchema.validate(req.body);
         if (error)
@@ -25,7 +25,7 @@ const loginController = {
                 return next(CustomErrorHandler.wrongcreadintials('User name or password is wrong'))
             }
             const accesstoken = JwtToken.sign({ _id: User._id });
-            const refrestoken = JwtToken.sign({ _id: User._id }, '1y', process.env.refresshsec);
+            const refrestoken = JwtToken.sign({ _id: User._id }, '1y', "thisismysecret");
 
             await refreshToken.create({ token: refrestoken })
             res.json({ access_token: accesstoken, refresh_toekn: refrestoken });
